@@ -1,17 +1,24 @@
-<img src="https://craterdog.com/images/CraterDog.png" width="50%">
+[<img src="https://craterdog.com/images/CraterDog.png" width="30%">](https://craterdog.com)
 
-## Go Collection Framework
+## Go Essential Composites
 
 ### Overview
 This project defines a Go based framework containing generic interfaces and
-class types for the following common high-level collections:
+class types for the following common high-level composite types:
+
+**Collections**
  * `Catalog[K comparable, V any]`
  * `List[V any]`
  * `Set[V any]`
  * `Stack[V any]`
  * `Queue[V any]`
 
-These classes provides a higher-level of abstraction than the low-level native
+**Ranges**
+ * `Continuum[V Continuous]`
+ * `Interval[V Discrete]`
+ * `Spectral[V Ordered]`
+
+These classes provide a higher-level of abstraction than the low-level native
 Go array, slice and map types.
 
 ### Quick Links

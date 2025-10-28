@@ -14,7 +14,7 @@ package module_test
 
 import (
 	fmt "fmt"
-	fra "github.com/craterdog/go-essential-composites/v8"
+	com "github.com/craterdog/go-essential-composites/v8"
 	ass "github.com/stretchr/testify/assert"
 	mat "math"
 	sli "slices"
@@ -23,67 +23,67 @@ import (
 )
 
 func TestModuleFunctions(t *tes.T) {
-	fra.Collator[any]()
-	fra.CollatorWithMaximumDepth[any](8)
-	var sorter = fra.Sorter[any]()
-	fra.SorterWithRanker[any](sorter.GetRanker())
-	fra.List[string]()
-	var list = fra.ListFromArray[string]([]string{"A"})
-	fra.ListFromSequence[string](list)
-	fra.ListClass[string]().Concatenate(list, list)
-	var association = fra.Association[string, int]("A", 1)
-	var catalog = fra.Catalog[string, int]()
-	fra.CatalogFromArray[string, int]([]fra.AssociationLike[string, int]{association})
-	fra.CatalogFromMap[string, int](catalog.AsMap())
-	fra.CatalogFromSequence[string, int](catalog)
-	fra.CatalogClass[string, int]().Extract(catalog, list)
-	fra.CatalogClass[string, int]().Merge(catalog, catalog)
-	fra.Queue[string]()
-	fra.QueueWithCapacity[string](8)
-	var queue = fra.QueueFromArray[string](list.AsArray())
-	fra.QueueFromSequence[string](queue)
-	var group fra.Synchronized = new(syn.WaitGroup)
+	com.Collator[any]()
+	com.CollatorWithMaximumDepth[any](8)
+	var sorter = com.Sorter[any]()
+	com.SorterWithRanker[any](sorter.GetRanker())
+	com.List[string]()
+	var list = com.ListFromArray[string]([]string{"A"})
+	com.ListFromSequence[string](list)
+	com.ListClass[string]().Concatenate(list, list)
+	var association = com.Association[string, int]("A", 1)
+	var catalog = com.Catalog[string, int]()
+	com.CatalogFromArray[string, int]([]com.AssociationLike[string, int]{association})
+	com.CatalogFromMap[string, int](catalog.AsMap())
+	com.CatalogFromSequence[string, int](catalog)
+	com.CatalogClass[string, int]().Extract(catalog, list)
+	com.CatalogClass[string, int]().Merge(catalog, catalog)
+	com.Queue[string]()
+	com.QueueWithCapacity[string](8)
+	var queue = com.QueueFromArray[string](list.AsArray())
+	com.QueueFromSequence[string](queue)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
-	var queues = fra.QueueClass[string]().Fork(group, queue, 2)
-	fra.QueueClass[string]().Split(group, queue, 2)
-	fra.QueueClass[string]().Join(group, queues)
+	var queues = com.QueueClass[string]().Fork(group, queue, 2)
+	com.QueueClass[string]().Split(group, queue, 2)
+	com.QueueClass[string]().Join(group, queues)
 	queue.CloseChannel()
-	var set = fra.Set[string]()
-	fra.SetWithCollator[string](set.GetCollator())
-	fra.SetFromArray[string](set.AsArray())
-	fra.SetFromSequence[string](set)
-	fra.SetClass[string]().And(set, set)
-	fra.SetClass[string]().Ior(set, set)
-	fra.SetClass[string]().San(set, set)
-	fra.SetClass[string]().Xor(set, set)
-	fra.Stack[string]()
-	fra.StackWithCapacity[string](8)
-	fra.StackFromArray[string](list.AsArray())
-	fra.StackFromSequence[string](list)
+	var set = com.Set[string]()
+	com.SetWithCollator[string](set.GetCollator())
+	com.SetFromArray[string](set.AsArray())
+	com.SetFromSequence[string](set)
+	com.SetClass[string]().And(set, set)
+	com.SetClass[string]().Ior(set, set)
+	com.SetClass[string]().San(set, set)
+	com.SetClass[string]().Xor(set, set)
+	com.Stack[string]()
+	com.StackWithCapacity[string](8)
+	com.StackFromArray[string](list.AsArray())
+	com.StackFromSequence[string](list)
 }
 
 func TestModuleExampleCode(t *tes.T) {
 	fmt.Println("MODULE EXAMPLE:")
 
 	// Create an empty list.
-	var list = fra.List[string]()
+	var list = com.List[string]()
 	fmt.Printf("An empty list: %v\n", list)
 	fmt.Println()
 
 	// Create a list using an intrinsic Go array of values.
-	list = fra.ListFromArray[string](
+	list = com.ListFromArray[string](
 		[]string{"Hello", "World"},
 	)
 	fmt.Printf("A list: %v\n", list)
 	fmt.Println()
 
 	// Create an empty catalog.
-	var catalog = fra.Catalog[string, int64]()
+	var catalog = com.Catalog[string, int64]()
 	fmt.Printf("An empty catalog: %v\n", catalog)
 	fmt.Println()
 
 	// Create a catalog from an intrinsic Go map.
-	catalog = fra.CatalogFromMap[string, int64](
+	catalog = com.CatalogFromMap[string, int64](
 		map[string]int64{
 			"alpha": 1,
 			"beta":  2,
@@ -94,34 +94,34 @@ func TestModuleExampleCode(t *tes.T) {
 	fmt.Println()
 
 	// Create a list of the catalog keys.
-	list = fra.ListFromSequence[string](catalog.GetKeys())
+	list = com.ListFromSequence[string](catalog.GetKeys())
 	fmt.Printf("A list of keys: %v\n", list)
 	fmt.Println()
 
 	// Create a set from an intrinsic Go array of values.
-	var set = fra.SetFromArray[string](
+	var set = com.SetFromArray[string](
 		[]string{"a", "b", "r", "a", "c", "a", "d", "a", "b", "r", "a"},
 	)
 	fmt.Printf("A set: %v\n", set)
 	fmt.Println()
 
 	// Create an empty stack with a capacity of 4.
-	var stack = fra.StackWithCapacity[string](4)
+	var stack = com.StackWithCapacity[string](4)
 	fmt.Printf("An empty stack: %v\n", stack)
 	fmt.Println()
 
 	// Create a stack containing the values from a list.
-	stack = fra.StackFromSequence[string](list)
+	stack = com.StackFromSequence[string](list)
 	fmt.Printf("A stack: %v\n", stack)
 	fmt.Println()
 
 	// Create an empty queue with a capacity of 5.
-	var queue = fra.QueueWithCapacity[string](5)
+	var queue = com.QueueWithCapacity[string](5)
 	fmt.Printf("An empty queue: %v\n", queue)
 	fmt.Println()
 
 	// Create a queue containing the values from a set.
-	queue = fra.QueueFromSequence[string](set)
+	queue = com.QueueFromSequence[string](set)
 	fmt.Printf("A queue: %v\n", queue)
 	fmt.Println()
 }
@@ -130,7 +130,7 @@ func TestListExampleCode(t *tes.T) {
 	fmt.Println("LIST EXAMPLE:")
 
 	// Create a new list from an array.
-	var list = fra.ListFromArray[string](
+	var list = com.ListFromArray[string](
 		[]string{"bar", "foo", "bax"},
 	)
 	fmt.Println("The initialized list:", list)
@@ -182,12 +182,12 @@ func TestSetExampleCode(t *tes.T) {
 	fmt.Println("SET EXAMPLE:")
 
 	// Create two sets with overlapping values.
-	var set1 = fra.SetFromArray[string](
+	var set1 = com.SetFromArray[string](
 		[]string{"alpha", "beta", "gamma"},
 	)
 	fmt.Println("The first set is:", set1)
 	fmt.Println()
-	var set2 = fra.SetFromArray[string](
+	var set2 = com.SetFromArray[string](
 		[]string{"beta", "gamma", "delta"},
 	)
 	fmt.Println("The second set is:", set2)
@@ -220,7 +220,7 @@ func TestStackExampleCode(t *tes.T) {
 	fmt.Println("STACK EXAMPLE:")
 
 	// Create a new empty stack.
-	var stack = fra.Stack[string]()
+	var stack = com.Stack[string]()
 	fmt.Println("The empty stack:", stack)
 	fmt.Println()
 
@@ -255,11 +255,11 @@ func TestQueueExampleCode(t *tes.T) {
 	fmt.Println("QUEUE EXAMPLE:")
 
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with a specific capacity.
-	var queue = fra.QueueWithCapacity[int](12)
+	var queue = com.QueueWithCapacity[int](12)
 	fmt.Println("The empty queue:", queue)
 	fmt.Println()
 
@@ -298,7 +298,7 @@ func TestCatalogExampleCode(t *tes.T) {
 	fmt.Println("CATALOG EXAMPLE:")
 
 	// Create a new catalog from a map.
-	var catalog = fra.CatalogFromMap[string, int64](
+	var catalog = com.CatalogFromMap[string, int64](
 		map[string]int64{
 			"foo": 1,
 			"bar": 2,
@@ -347,7 +347,7 @@ func TestCollatorExampleCode(t *tes.T) {
 	fmt.Println("COLLATOR EXAMPLE:")
 
 	// Create a collator with the default maximum depth.
-	var collator = fra.Collator[any]()
+	var collator = com.Collator[any]()
 
 	// Collate two strings.
 	var s1 = "first"
@@ -358,7 +358,7 @@ func TestCollatorExampleCode(t *tes.T) {
 	)
 	fmt.Println(
 		"The first string is ranked before the second strings:",
-		collator.RankValues(s1, s2) == fra.LesserRank,
+		collator.RankValues(s1, s2) == com.LesserRank,
 	)
 	fmt.Println()
 
@@ -371,7 +371,7 @@ func TestCollatorExampleCode(t *tes.T) {
 	)
 	fmt.Println(
 		"The first array is ranked before the second array:",
-		collator.RankValues(a1, a2) == fra.LesserRank,
+		collator.RankValues(a1, a2) == com.LesserRank,
 	)
 	fmt.Println()
 }
@@ -380,7 +380,7 @@ func TestSorterExampleCode(t *tes.T) {
 	fmt.Println("SORTER EXAMPLE:")
 
 	// Create a sorter with the default (natural) ranker.
-	var sorter = fra.Sorter[string]()
+	var sorter = com.Sorter[string]()
 
 	// Create an array.
 	var array = []string{
@@ -408,15 +408,15 @@ func TestSorterExampleCode(t *tes.T) {
 	fmt.Println()
 
 	// Sort the values with a custom ranking function.
-	sorter = fra.SorterWithRanker[string](
-		func(first, second string) fra.Rank {
+	sorter = com.SorterWithRanker[string](
+		func(first, second string) com.Rank {
 			switch {
 			case first < second:
-				return fra.GreaterRank
+				return com.GreaterRank
 			case first > second:
-				return fra.LesserRank
+				return com.LesserRank
 			default:
-				return fra.EqualRank
+				return com.EqualRank
 			}
 		},
 	)
@@ -429,7 +429,7 @@ func TestIteratorExampleCode(t *tes.T) {
 	fmt.Println("ITERATOR EXAMPLE:")
 
 	// Create a list from an array.
-	var list = fra.ListFromArray[string](
+	var list = com.ListFromArray[string](
 		[]string{"foo", "bar", "baz"},
 	)
 	var iterator = list.GetIterator()
@@ -496,14 +496,14 @@ type Fuz struct {
 }
 
 func TestRank(t *tes.T) {
-	ass.Equal(t, "LesserRank", fra.LesserRank.String())
-	ass.Equal(t, "EqualRank", fra.EqualRank.String())
-	ass.Equal(t, "GreaterRank", fra.GreaterRank.String())
+	ass.Equal(t, "LesserRank", com.LesserRank.String())
+	ass.Equal(t, "EqualRank", com.EqualRank.String())
+	ass.Equal(t, "GreaterRank", com.GreaterRank.String())
 }
 
 func TestCompareMaximum(t *tes.T) {
-	var collator = fra.CollatorClass[any]().CollatorWithMaximumDepth(1)
-	var list = fra.ListClass[any]().ListFromArray([]any{"foo", []int{1, 2, 3}})
+	var collator = com.CollatorClass[any]().CollatorWithMaximumDepth(1)
+	var list = com.ListClass[any]().ListFromArray([]any{"foo", []int{1, 2, 3}})
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "The maximum traversal depth was exceeded: 1", e)
@@ -515,8 +515,8 @@ func TestCompareMaximum(t *tes.T) {
 }
 
 func TestRankMaximum(t *tes.T) {
-	var collator = fra.CollatorClass[any]().CollatorWithMaximumDepth(1)
-	var list = fra.ListClass[any]().ListFromArray([]any{"foo", []int{1, 2, 3}})
+	var collator = com.CollatorClass[any]().CollatorWithMaximumDepth(1)
+	var list = com.ListClass[any]().ListFromArray([]any{"foo", []int{1, 2, 3}})
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "The maximum traversal depth was exceeded: 1", e)
@@ -528,7 +528,7 @@ func TestRankMaximum(t *tes.T) {
 }
 
 func TestComparison(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 
 	// Nil
 	var ShouldBeNil any
@@ -697,22 +697,22 @@ func TestComparison(t *tes.T) {
 }
 
 func TestTildeTypes(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 
 	// Boolean
 	var False = Boolean(false)
 	var True = Boolean(true)
 	var ShouldBeFalse Boolean
 
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeFalse, ShouldBeFalse))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeFalse, True))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(False, ShouldBeFalse))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(True, ShouldBeFalse))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeFalse, False))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(False, True))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(False, False))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(True, False))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(True, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeFalse, ShouldBeFalse))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeFalse, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(False, ShouldBeFalse))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(True, ShouldBeFalse))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeFalse, False))
+	ass.Equal(t, com.LesserRank, collator.RankValues(False, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(False, False))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(True, False))
+	ass.Equal(t, com.EqualRank, collator.RankValues(True, True))
 
 	// Byte
 	var Zero = Byte(0)
@@ -758,8 +758,8 @@ func TestTildeTypes(t *tes.T) {
 }
 
 func TestCompareRecursiveArrays(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
-	var list = fra.ListClass[any]().ListFromArray(
+	var collator = com.CollatorClass[any]().Collator()
+	var list = com.ListClass[any]().ListFromArray(
 		[]any{0},
 	)
 	list.SetValue(1, list) // Now it is recursive.
@@ -774,8 +774,8 @@ func TestCompareRecursiveArrays(t *tes.T) {
 }
 
 func TestCompareRecursiveMaps(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
-	var catalog = fra.CatalogClass[string, any]().CatalogFromMap(
+	var collator = com.CollatorClass[any]().Collator()
+	var catalog = com.CatalogClass[string, any]().CatalogFromMap(
 		map[string]any{
 			"first": 1,
 		},
@@ -792,155 +792,155 @@ func TestCompareRecursiveMaps(t *tes.T) {
 }
 
 func TestNilRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var ShouldBeNil any
-	ass.Equal(t, fra.EqualRank, collator.RankValues(nil, nil))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(nil, ShouldBeNil))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNil, ShouldBeNil))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNil, nil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(nil, nil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(nil, ShouldBeNil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNil, ShouldBeNil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNil, nil))
 }
 
 func TestBooleanRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var False = false
 	var True = true
 	var ShouldBeFalse bool
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeFalse, ShouldBeFalse))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeFalse, True))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(False, ShouldBeFalse))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(True, ShouldBeFalse))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeFalse, False))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(False, True))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(False, False))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(True, False))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(True, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeFalse, ShouldBeFalse))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeFalse, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(False, ShouldBeFalse))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(True, ShouldBeFalse))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeFalse, False))
+	ass.Equal(t, com.LesserRank, collator.RankValues(False, True))
+	ass.Equal(t, com.EqualRank, collator.RankValues(False, False))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(True, False))
+	ass.Equal(t, com.EqualRank, collator.RankValues(True, True))
 }
 
 func TestByteRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Zero byte = 0x00
 	var One byte = 0x01
 	var ShouldBeZero byte
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeZero, ShouldBeZero))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeZero, One))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Zero, ShouldBeZero))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, ShouldBeZero))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeZero, Zero))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Zero, One))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Zero, Zero))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, Zero))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(One, One))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeZero, ShouldBeZero))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeZero, One))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Zero, ShouldBeZero))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, ShouldBeZero))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeZero, Zero))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Zero, One))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Zero, Zero))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, Zero))
+	ass.Equal(t, com.EqualRank, collator.RankValues(One, One))
 }
 
 func TestIntegerRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Zilch = 0
 	var Two = 2
 	var Three = 3
 	var ShouldBeZilch int
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeZilch, ShouldBeZilch))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeZilch, Two))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Zilch, ShouldBeZilch))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Two, ShouldBeZilch))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeZilch, Zilch))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Two, Three))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Two, Two))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Three, Two))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Three, Three))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeZilch, ShouldBeZilch))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeZilch, Two))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Zilch, ShouldBeZilch))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Two, ShouldBeZilch))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeZilch, Zilch))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Two, Three))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Two, Two))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Three, Two))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Three, Three))
 }
 
 func TestFloatRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Negligible = 0.0
 	var Fourth = 0.25
 	var Half = 0.5
 	var ShouldBeNegligible float64
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNegligible, ShouldBeNegligible))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeNegligible, Half))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Negligible, ShouldBeNegligible))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Half, ShouldBeNegligible))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNegligible, Negligible))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Fourth, Half))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Fourth, Fourth))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Half, Fourth))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Half, Half))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNegligible, ShouldBeNegligible))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeNegligible, Half))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Negligible, ShouldBeNegligible))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Half, ShouldBeNegligible))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNegligible, Negligible))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Fourth, Half))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Fourth, Fourth))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Half, Fourth))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Half, Half))
 }
 
 func TestComplexRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Origin complex128
 	var One = 1 + 0i
 	var Pi = -1 + 0i
 	var PiOver2 = 0 + 1i
 	var PiOver4 = 1 + 1i
 
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Origin, Origin))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Origin, One))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Origin, Pi))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Origin, PiOver2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Origin, PiOver4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Origin, Origin))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Origin, One))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Origin, Pi))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Origin, PiOver2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Origin, PiOver4))
 
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, Origin))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(One, One))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, Pi))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, PiOver2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(One, PiOver4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, Origin))
+	ass.Equal(t, com.EqualRank, collator.RankValues(One, One))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, Pi))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, PiOver2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(One, PiOver4))
 
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Pi, Origin))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Pi, One))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Pi, Pi))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Pi, PiOver2))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Pi, PiOver4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Pi, Origin))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Pi, One))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Pi, Pi))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Pi, PiOver2))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Pi, PiOver4))
 
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(PiOver2, Origin))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(PiOver2, One))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(PiOver2, Pi))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(PiOver2, PiOver2))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(PiOver2, PiOver4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(PiOver2, Origin))
+	ass.Equal(t, com.LesserRank, collator.RankValues(PiOver2, One))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(PiOver2, Pi))
+	ass.Equal(t, com.EqualRank, collator.RankValues(PiOver2, PiOver2))
+	ass.Equal(t, com.LesserRank, collator.RankValues(PiOver2, PiOver4))
 
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(PiOver4, Origin))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(PiOver4, One))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(PiOver4, Pi))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(PiOver4, PiOver2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(PiOver4, PiOver4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(PiOver4, Origin))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(PiOver4, One))
+	ass.Equal(t, com.LesserRank, collator.RankValues(PiOver4, Pi))
+	ass.Equal(t, com.LesserRank, collator.RankValues(PiOver4, PiOver2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(PiOver4, PiOver4))
 }
 
 func TestRuneRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Null = rune(0)
 	var Sad = '☹'
 	var Happy = '☺'
 	var ShouldBeNull rune
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNull, ShouldBeNull))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeNull, Sad))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Null, ShouldBeNull))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Sad, ShouldBeNull))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeNull, Null))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Sad, Happy))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Sad, Sad))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Happy, Sad))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Happy, Happy))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNull, ShouldBeNull))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeNull, Sad))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Null, ShouldBeNull))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Sad, ShouldBeNull))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeNull, Null))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Sad, Happy))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Sad, Sad))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Happy, Sad))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Happy, Happy))
 }
 
 func TestStringRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Empty = ""
 	var Hello = "Hello"
 	var World = "World"
 	var ShouldBeEmpty string
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeEmpty, ShouldBeEmpty))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(ShouldBeEmpty, Hello))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Empty, ShouldBeEmpty))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(Hello, ShouldBeEmpty))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(ShouldBeEmpty, Empty))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(Hello, World))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(Hello, Hello))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(World, Hello))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(World, World))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeEmpty, ShouldBeEmpty))
+	ass.Equal(t, com.LesserRank, collator.RankValues(ShouldBeEmpty, Hello))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Empty, ShouldBeEmpty))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(Hello, ShouldBeEmpty))
+	ass.Equal(t, com.EqualRank, collator.RankValues(ShouldBeEmpty, Empty))
+	ass.Equal(t, com.LesserRank, collator.RankValues(Hello, World))
+	ass.Equal(t, com.EqualRank, collator.RankValues(Hello, Hello))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(World, Hello))
+	ass.Equal(t, com.EqualRank, collator.RankValues(World, World))
 }
 
 func TestArrayRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var Hello = "Hello"
 	var World = "World"
 	var Universe = "Universe"
@@ -950,27 +950,27 @@ func TestArrayRanking(t *tes.T) {
 	var a3 = []any{Hello, World, Universe}
 	var a4 = []any{Hello, Universe, World}
 	var aNil []any
-	ass.Equal(t, fra.EqualRank, collator.RankValues(aNil, aNil))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(aNil, a0))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(a0, aNil))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a0, a0))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(a1, aNil))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(a2, a1))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a2, a2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(a1, a2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a1, a1))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(a2, a3))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a2, a2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(a3, a2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a3, a3))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(a4, a1))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a4, a4))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(a1, a4))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(a1, a1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(aNil, aNil))
+	ass.Equal(t, com.LesserRank, collator.RankValues(aNil, a0))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(a0, aNil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a0, a0))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(a1, aNil))
+	ass.Equal(t, com.LesserRank, collator.RankValues(a2, a1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a2, a2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(a1, a2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a1, a1))
+	ass.Equal(t, com.LesserRank, collator.RankValues(a2, a3))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a2, a2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(a3, a2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a3, a3))
+	ass.Equal(t, com.LesserRank, collator.RankValues(a4, a1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a4, a4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(a1, a4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(a1, a1))
 }
 
 func TestMapRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var True = true
 	var One byte = 0x01
 	var Two = 2
@@ -994,50 +994,50 @@ func TestMapRanking(t *tes.T) {
 		Two:   Universe,
 		Three: World}
 	var mNil map[any]any
-	ass.Equal(t, fra.EqualRank, collator.RankValues(mNil, mNil))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(mNil, m0))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(m0, mNil))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m0, m0))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(m2, m1))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m2, m2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(m1, m2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m1, m1))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(m2, m3))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m2, m2))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(m3, m2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m3, m3))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(m4, m1))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m4, m4))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(m1, m4))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(m1, m1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(mNil, mNil))
+	ass.Equal(t, com.LesserRank, collator.RankValues(mNil, m0))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(m0, mNil))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m0, m0))
+	ass.Equal(t, com.LesserRank, collator.RankValues(m2, m1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m2, m2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(m1, m2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m1, m1))
+	ass.Equal(t, com.LesserRank, collator.RankValues(m2, m3))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m2, m2))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(m3, m2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m3, m3))
+	ass.Equal(t, com.LesserRank, collator.RankValues(m4, m1))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m4, m4))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(m1, m4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(m1, m1))
 }
 
 func TestStructRanking(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var f1 = FooBar(1, "one", nil)
 	var f2 = FooBar(1, "two", nil)
 	var f3 = FooBar(2, "two", nil)
 	var f4 = Fuz{"two"}
 	var f5 = Fuz{"two"}
 	var f6 = Fuz{"three"}
-	ass.Equal(t, fra.EqualRank, collator.RankValues(f1, f1))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(f1, f2))
-	ass.Equal(t, fra.LesserRank, collator.RankValues(f2, f3))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(f3, f1))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(f3, f2))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(f4, f4))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(f4, f5))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(f5, f6))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(f3, &f4))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(&f4, &f4))
-	ass.Equal(t, fra.EqualRank, collator.RankValues(&f4, &f5))
-	ass.Equal(t, fra.GreaterRank, collator.RankValues(&f5, &f6))
+	ass.Equal(t, com.EqualRank, collator.RankValues(f1, f1))
+	ass.Equal(t, com.LesserRank, collator.RankValues(f1, f2))
+	ass.Equal(t, com.LesserRank, collator.RankValues(f2, f3))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(f3, f1))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(f3, f2))
+	ass.Equal(t, com.EqualRank, collator.RankValues(f4, f4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(f4, f5))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(f5, f6))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(f3, &f4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(&f4, &f4))
+	ass.Equal(t, com.EqualRank, collator.RankValues(&f4, &f5))
+	ass.Equal(t, com.GreaterRank, collator.RankValues(&f5, &f6))
 }
 
 func TestTildeArrays(t *tes.T) {
-	var collator = fra.CollatorClass[String]().Collator()
+	var collator = com.CollatorClass[String]().Collator()
 	var ranker = collator.RankValues
-	var sorter = fra.SorterClass[String]().SorterWithRanker(ranker)
+	var sorter = com.SorterClass[String]().SorterWithRanker(ranker)
 	var alpha = String("alpha")
 	var beta = String("beta")
 	var gamma = String("gamma")
@@ -1051,8 +1051,8 @@ func TestTildeArrays(t *tes.T) {
 }
 
 func TestRankRecursiveArrays(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
-	var list = fra.ListClass[any]().ListFromArray(
+	var collator = com.CollatorClass[any]().Collator()
+	var list = com.ListClass[any]().ListFromArray(
 		[]any{0},
 	)
 	list.SetValue(1, list) // Now it is recursive.
@@ -1067,8 +1067,8 @@ func TestRankRecursiveArrays(t *tes.T) {
 }
 
 func TestRankRecursiveMaps(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
-	var catalog = fra.CatalogClass[string, any]().CatalogFromMap(
+	var collator = com.CollatorClass[any]().Collator()
+	var catalog = com.CatalogClass[string, any]().CatalogFromMap(
 		map[string]any{
 			"first": 1,
 		},
@@ -1085,8 +1085,8 @@ func TestRankRecursiveMaps(t *tes.T) {
 }
 
 func TestIteratorsWithLists(t *tes.T) {
-	var list = fra.ListClass[int]().ListFromArray([]int{1, 2, 3, 4, 5})
-	list = fra.ListClass[int]().ListFromSequence(list)
+	var list = com.ListClass[int]().ListFromArray([]int{1, 2, 3, 4, 5})
+	list = com.ListClass[int]().ListFromSequence(list)
 	var iterator = list.GetIterator()
 	ass.False(t, iterator.IsEmpty())
 	ass.True(t, iterator.GetSize() == 5)
@@ -1115,17 +1115,17 @@ func TestIteratorsWithLists(t *tes.T) {
 }
 
 func TestSortingEmpty(t *tes.T) {
-	var collator = fra.CollatorClass[any]().Collator()
+	var collator = com.CollatorClass[any]().Collator()
 	var ranker = collator.RankValues
-	var sorter = fra.SorterClass[any]().SorterWithRanker(ranker)
+	var sorter = com.SorterClass[any]().SorterWithRanker(ranker)
 	var empty = []any{}
 	sorter.SortValues(empty)
 }
 
 func TestSortingIntegers(t *tes.T) {
-	var collator = fra.CollatorClass[int]().Collator()
+	var collator = com.CollatorClass[int]().Collator()
 	var ranker = collator.RankValues
-	var sorter = fra.SorterClass[int]().SorterWithRanker(ranker)
+	var sorter = com.SorterClass[int]().SorterWithRanker(ranker)
 	var unsorted = []int{4, 3, 1, 5, 2}
 	var sorted = []int{1, 2, 3, 4, 5}
 	sorter.SortValues(unsorted)
@@ -1133,9 +1133,9 @@ func TestSortingIntegers(t *tes.T) {
 }
 
 func TestSortingStrings(t *tes.T) {
-	var collator = fra.CollatorClass[string]().Collator()
+	var collator = com.CollatorClass[string]().Collator()
 	var ranker = collator.RankValues
-	var sorter = fra.SorterClass[string]().SorterWithRanker(ranker)
+	var sorter = com.SorterClass[string]().SorterWithRanker(ranker)
 	var unsorted = []string{"alpha", "beta", "gamma", "delta"}
 	var sorted = []string{"alpha", "beta", "delta", "gamma"}
 	sorter.SortValues(unsorted)
@@ -1145,9 +1145,9 @@ func TestSortingStrings(t *tes.T) {
 // COLLECTIONS
 
 func TestCatalogConstructors(t *tes.T) {
-	var class = fra.CatalogClass[rune, int64]()
+	var class = com.CatalogClass[rune, int64]()
 	class.Catalog()
-	class.CatalogFromArray([]fra.AssociationLike[rune, int64]{})
+	class.CatalogFromArray([]com.AssociationLike[rune, int64]{})
 	class.CatalogFromMap(map[rune]int64{})
 	var sequence = class.CatalogFromMap(map[rune]int64{
 		'a': 1,
@@ -1159,16 +1159,16 @@ func TestCatalogConstructors(t *tes.T) {
 }
 
 func TestCatalogsWithStringsAndIntegers(t *tes.T) {
-	var catalogCollator = fra.Collator[fra.CatalogLike[string, int]]()
-	var keys = fra.ListClass[string]().ListFromArray([]string{"foo", "bar"})
-	var association1 = fra.Association("foo", 1)
-	var association2 = fra.Association("bar", 2)
-	var association3 = fra.Association("baz", 3)
-	var catalog = fra.Catalog[string, int]()
+	var catalogCollator = com.Collator[com.CatalogLike[string, int]]()
+	var keys = com.ListClass[string]().ListFromArray([]string{"foo", "bar"})
+	var association1 = com.Association("foo", 1)
+	var association2 = com.Association("bar", 2)
+	var association3 = com.Association("baz", 3)
+	var catalog = com.Catalog[string, int]()
 	ass.True(t, catalog.IsEmpty())
 	ass.True(t, catalog.GetSize() == 0)
 	ass.Equal(t, []string{}, catalog.GetKeys().AsArray())
-	ass.Equal(t, []fra.AssociationLike[string, int]{}, catalog.AsArray())
+	ass.Equal(t, []com.AssociationLike[string, int]{}, catalog.AsArray())
 	var iterator = catalog.GetIterator()
 	ass.False(t, iterator.HasNext())
 	ass.False(t, iterator.HasPrevious())
@@ -1183,15 +1183,15 @@ func TestCatalogsWithStringsAndIntegers(t *tes.T) {
 	catalog.SetValue(association2.GetKey(), association2.GetValue())
 	catalog.SetValue(association3.GetKey(), association3.GetValue())
 	ass.True(t, catalog.GetSize() == 3)
-	var catalog2 = fra.CatalogFromSequence(catalog)
+	var catalog2 = com.CatalogFromSequence(catalog)
 	ass.True(t, catalogCollator.CompareValues(catalog, catalog2))
-	var m = fra.CatalogClass[string, int]().CatalogFromMap(map[string]int{
+	var m = com.CatalogClass[string, int]().CatalogFromMap(map[string]int{
 		"foo": 1,
 		"bar": 2,
 		"baz": 3,
 	})
-	var associationCollator = fra.Collator[fra.AssociationLike[string, int]]()
-	var catalog3 = fra.CatalogFromSequence(m)
+	var associationCollator = com.Collator[com.AssociationLike[string, int]]()
+	var catalog3 = com.CatalogFromSequence(m)
 	catalog2.SortValues()
 	catalog3.SortValuesWithRanker(associationCollator.RankValues)
 	ass.True(t, catalogCollator.CompareValues(catalog2, catalog3))
@@ -1225,18 +1225,18 @@ func TestCatalogsWithStringsAndIntegers(t *tes.T) {
 }
 
 func TestCatalogsWithMerge(t *tes.T) {
-	var collator = fra.Collator[fra.CatalogLike[string, int]]()
-	var association1 = fra.Association("foo", 1)
-	var association2 = fra.Association("bar", 2)
-	var association3 = fra.Association("baz", 3)
-	var catalog1 = fra.Catalog[string, int]()
+	var collator = com.Collator[com.CatalogLike[string, int]]()
+	var association1 = com.Association("foo", 1)
+	var association2 = com.Association("bar", 2)
+	var association3 = com.Association("baz", 3)
+	var catalog1 = com.Catalog[string, int]()
 	catalog1.SetValue(association1.GetKey(), association1.GetValue())
 	catalog1.SetValue(association2.GetKey(), association2.GetValue())
-	var catalog2 = fra.Catalog[string, int]()
+	var catalog2 = com.Catalog[string, int]()
 	catalog2.SetValue(association2.GetKey(), association2.GetValue())
 	catalog2.SetValue(association3.GetKey(), association3.GetValue())
-	var catalog3 = fra.CatalogClass[string, int]().Merge(catalog1, catalog2)
-	var catalog4 = fra.Catalog[string, int]()
+	var catalog3 = com.CatalogClass[string, int]().Merge(catalog1, catalog2)
+	var catalog4 = com.Catalog[string, int]()
 	catalog4.SetValue(association1.GetKey(), association1.GetValue())
 	catalog4.SetValue(association2.GetKey(), association2.GetValue())
 	catalog4.SetValue(association3.GetKey(), association3.GetValue())
@@ -1244,21 +1244,21 @@ func TestCatalogsWithMerge(t *tes.T) {
 }
 
 func TestCatalogsWithExtract(t *tes.T) {
-	var keys = fra.ListClass[string]().ListFromArray([]string{"foo", "baz"})
-	var association1 = fra.Association("foo", 1)
-	var association2 = fra.Association("bar", 2)
-	var association3 = fra.Association("baz", 3)
-	var catalog1 = fra.Catalog[string, int]()
+	var keys = com.ListClass[string]().ListFromArray([]string{"foo", "baz"})
+	var association1 = com.Association("foo", 1)
+	var association2 = com.Association("bar", 2)
+	var association3 = com.Association("baz", 3)
+	var catalog1 = com.Catalog[string, int]()
 	catalog1.SetValue(association1.GetKey(), association1.GetValue())
 	catalog1.SetValue(association2.GetKey(), association2.GetValue())
 	catalog1.SetValue(association3.GetKey(), association3.GetValue())
-	var catalog2 = fra.CatalogClass[string, int]().Extract(catalog1, keys)
-	var catalog3 = fra.Catalog[string, int]()
+	var catalog2 = com.CatalogClass[string, int]().Extract(catalog1, keys)
+	var catalog3 = com.Catalog[string, int]()
 	catalog3.SetValue(association1.GetKey(), association1.GetValue())
 	catalog3.SetValue(association3.GetKey(), association3.GetValue())
-	var collator = fra.Collator[fra.CatalogLike[string, int]]()
+	var collator = com.Collator[com.CatalogLike[string, int]]()
 	ass.True(t, collator.CompareValues(catalog2, catalog3))
-	var catalog4 = fra.CatalogFromArray([]fra.AssociationLike[string, int]{
+	var catalog4 = com.CatalogFromArray([]com.AssociationLike[string, int]{
 		association1,
 		association2,
 		association3,
@@ -1267,12 +1267,12 @@ func TestCatalogsWithExtract(t *tes.T) {
 }
 
 func TestCatalogsWithEmptyCatalogs(t *tes.T) {
-	var keys = fra.ListClass[int]().List()
-	var catalog1 = fra.Catalog[int, string]()
-	var catalog2 = fra.Catalog[int, string]()
-	var catalog3 = fra.CatalogClass[int, string]().Merge(catalog1, catalog2)
-	var catalog4 = fra.CatalogClass[int, string]().Extract(catalog1, keys)
-	var collator = fra.Collator[fra.CatalogLike[int, string]]()
+	var keys = com.ListClass[int]().List()
+	var catalog1 = com.Catalog[int, string]()
+	var catalog2 = com.Catalog[int, string]()
+	var catalog3 = com.CatalogClass[int, string]().Merge(catalog1, catalog2)
+	var catalog4 = com.CatalogClass[int, string]().Extract(catalog1, keys)
+	var collator = com.Collator[com.CatalogLike[int, string]]()
 	ass.True(t, collator.CompareValues(catalog1, catalog2))
 	ass.True(t, collator.CompareValues(catalog2, catalog3))
 	ass.True(t, collator.CompareValues(catalog3, catalog4))
@@ -1280,28 +1280,28 @@ func TestCatalogsWithEmptyCatalogs(t *tes.T) {
 }
 
 func TestListConstructors(t *tes.T) {
-	fra.List[int64]()
-	var sequence = fra.ListFromArray([]int64{1, 2, 3})
-	var list = fra.ListFromSequence(sequence)
+	com.List[int64]()
+	var sequence = com.ListFromArray([]int64{1, 2, 3})
+	var list = com.ListFromSequence(sequence)
 	ass.Equal(t, sequence.AsArray(), list.AsArray())
 }
 
 func TestListsWithStrings(t *tes.T) {
-	var collator = fra.CollatorClass[fra.ListLike[string]]().Collator()
-	var foo = fra.ListFromArray([]string{"foo"})
-	var bar = fra.ListFromArray([]string{"bar"})
-	var baz = fra.ListFromArray([]string{"baz"})
-	var foz = fra.ListFromArray([]string{"foz"})
-	var barbaz = fra.ListFromArray([]string{"bar", "baz"})
-	var bazbaz = fra.ListFromArray([]string{"baz", "baz"})
-	var foobar = fra.ListFromArray([]string{"foo", "bar"})
-	var baxbaz = fra.ListFromArray([]string{"bax", "baz"})
-	var baxbez = fra.ListFromArray([]string{"bax", "bez"})
-	var barfoobax = fra.ListFromArray([]string{"bar", "foo", "bax"})
-	var foobazbar = fra.ListFromArray([]string{"foo", "baz", "bar"})
-	var foobarbaz = fra.ListFromArray([]string{"foo", "bar", "baz"})
-	var barbazfoo = fra.ListFromArray([]string{"bar", "baz", "foo"})
-	var list = fra.List[string]()
+	var collator = com.CollatorClass[com.ListLike[string]]().Collator()
+	var foo = com.ListFromArray([]string{"foo"})
+	var bar = com.ListFromArray([]string{"bar"})
+	var baz = com.ListFromArray([]string{"baz"})
+	var foz = com.ListFromArray([]string{"foz"})
+	var barbaz = com.ListFromArray([]string{"bar", "baz"})
+	var bazbaz = com.ListFromArray([]string{"baz", "baz"})
+	var foobar = com.ListFromArray([]string{"foo", "bar"})
+	var baxbaz = com.ListFromArray([]string{"bax", "baz"})
+	var baxbez = com.ListFromArray([]string{"bax", "bez"})
+	var barfoobax = com.ListFromArray([]string{"bar", "foo", "bax"})
+	var foobazbar = com.ListFromArray([]string{"foo", "baz", "bar"})
+	var foobarbaz = com.ListFromArray([]string{"foo", "bar", "baz"})
+	var barbazfoo = com.ListFromArray([]string{"bar", "baz", "foo"})
+	var list = com.List[string]()
 	ass.True(t, list.IsEmpty())
 	ass.True(t, list.GetSize() == 0)
 	ass.False(t, list.ContainsValue("bax"))
@@ -1321,13 +1321,13 @@ func TestListsWithStrings(t *tes.T) {
 	list.AppendValues(barbaz)             //       ["foo", "bar", "baz"]
 	ass.True(t, list.GetSize() == 3)      //       ["foo", "bar", "baz"]
 	ass.Equal(t, "foo", list.GetValue(1)) //       ["foo", "bar", "baz"]
-	ass.True(t, collator.CompareValues(fra.ListFromArray(list.AsArray()), list))
+	ass.True(t, collator.CompareValues(com.ListFromArray(list.AsArray()), list))
 	ass.Equal(t, barbaz.AsArray(), list.GetValues(2, 3).AsArray())
 	ass.Equal(t, foo.AsArray(), list.GetValues(1, 1).AsArray())
-	var list2 = fra.ListFromSequence(list)
+	var list2 = com.ListFromSequence(list)
 	ass.True(t, collator.CompareValues(list, list2))
-	var array = fra.ListFromArray([]string{"foo", "bar", "baz"})
-	var list3 = fra.ListFromSequence(array)
+	var array = com.ListFromArray([]string{"foo", "bar", "baz"})
+	var list3 = com.ListFromSequence(array)
 	list2.SortValues()
 	list3.SortValues()
 	ass.True(t, collator.CompareValues(list2, list3))
@@ -1413,8 +1413,8 @@ func TestListsWithStrings(t *tes.T) {
 }
 
 func TestListsWithTildes(t *tes.T) {
-	var array = fra.ListFromArray([]Integer{3, 1, 4, 5, 9, 2})
-	var list = fra.ListFromSequence(array)
+	var array = com.ListFromArray([]Integer{3, 1, 4, 5, 9, 2})
+	var list = com.ListFromSequence(array)
 	ass.False(t, list.IsEmpty())        // [3,1,4,5,9,2]
 	ass.True(t, list.GetSize() == 6)    // [3,1,4,5,9,2]
 	ass.True(t, list.GetValue(1) == 3)  // [3,1,4,5,9,2]
@@ -1425,24 +1425,24 @@ func TestListsWithTildes(t *tes.T) {
 }
 
 func TestListsWithConcatenate(t *tes.T) {
-	var collator = fra.CollatorClass[fra.ListLike[int]]().Collator()
-	var onetwothree = fra.ListFromArray([]int{1, 2, 3})
-	var fourfivesix = fra.ListFromArray([]int{4, 5, 6})
-	var onethrusix = fra.ListFromArray([]int{1, 2, 3, 4, 5, 6})
-	var list1 = fra.List[int]()
+	var collator = com.CollatorClass[com.ListLike[int]]().Collator()
+	var onetwothree = com.ListFromArray([]int{1, 2, 3})
+	var fourfivesix = com.ListFromArray([]int{4, 5, 6})
+	var onethrusix = com.ListFromArray([]int{1, 2, 3, 4, 5, 6})
+	var list1 = com.List[int]()
 	list1.AppendValues(onetwothree)
-	var list2 = fra.List[int]()
+	var list2 = com.List[int]()
 	list2.AppendValues(fourfivesix)
-	var list3 = fra.ListClass[int]().Concatenate(list1, list2)
-	var list4 = fra.List[int]()
+	var list3 = com.ListClass[int]().Concatenate(list1, list2)
+	var list4 = com.List[int]()
 	list4.AppendValues(onethrusix)
 	ass.True(t, collator.CompareValues(list3, list4))
 }
 
 func TestListsWithEmptyLists(t *tes.T) {
-	var collator = fra.Collator[fra.ListLike[int]]()
-	var empty = fra.List[int]()
-	var list = fra.ListClass[int]().Concatenate(empty, empty)
+	var collator = com.Collator[com.ListLike[int]]()
+	var empty = com.List[int]()
+	var list = com.ListClass[int]().Concatenate(empty, empty)
 	ass.True(t, collator.CompareValues(empty, empty))
 	ass.True(t, collator.CompareValues(list, empty))
 	ass.True(t, collator.CompareValues(empty, list))
@@ -1450,20 +1450,20 @@ func TestListsWithEmptyLists(t *tes.T) {
 }
 
 func TestQueueConstructors(t *tes.T) {
-	fra.Queue[int64]()
-	fra.QueueWithCapacity[int64](5)
-	var sequence = fra.QueueFromArray([]int64{1, 2, 3})
-	var queue = fra.QueueFromSequence(sequence)
+	com.Queue[int64]()
+	com.QueueWithCapacity[int64](5)
+	var sequence = com.QueueFromArray([]int64{1, 2, 3})
+	var queue = com.QueueFromSequence(sequence)
 	ass.Equal(t, sequence.AsArray(), queue.AsArray())
 }
 
 func TestQueueWithConcurrency(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with a specific capacity.
-	var queue = fra.QueueWithCapacity[int](12)
+	var queue = com.QueueWithCapacity[int](12)
 	ass.True(t, queue.GetCapacity() == 12)
 	ass.True(t, queue.IsEmpty())
 	ass.True(t, queue.GetSize() == 0)
@@ -1496,12 +1496,12 @@ func TestQueueWithConcurrency(t *tes.T) {
 
 func TestQueueWithFork(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with a fan out of two.
-	var input = fra.QueueWithCapacity[int](3)
-	var outputs = fra.QueueClass[int]().Fork(group, input, 2)
+	var input = com.QueueWithCapacity[int](3)
+	var outputs = com.QueueClass[int]().Fork(group, input, 2)
 
 	// Remove values from the output queues in the background.
 	var iterator = outputs.GetIterator()
@@ -1528,11 +1528,11 @@ func TestQueueWithFork(t *tes.T) {
 
 func TestQueueWithInvalidFanOut(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with an invalid fan out.
-	var input = fra.QueueWithCapacity[int](3)
+	var input = com.QueueWithCapacity[int](3)
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "The fan out size for a queue must be greater than one.", e)
@@ -1540,18 +1540,18 @@ func TestQueueWithInvalidFanOut(t *tes.T) {
 			ass.Fail(t, "Test should result in recovered panic.")
 		}
 	}()
-	fra.QueueClass[int]().Fork(group, input, 1) // Should panic here.
+	com.QueueClass[int]().Fork(group, input, 1) // Should panic here.
 }
 
 func TestQueueWithSplitAndJoin(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with a split of five outputs and a join back to one.
-	var input = fra.QueueWithCapacity[int](3)
-	var split = fra.QueueClass[int]().Split(group, input, 5)
-	var output = fra.QueueClass[int]().Join(group, split)
+	var input = com.QueueWithCapacity[int](3)
+	var split = com.QueueClass[int]().Split(group, input, 5)
+	var output = com.QueueClass[int]().Join(group, split)
 
 	// Remove values from the output queue in the background.
 	group.Go(func() {
@@ -1574,11 +1574,11 @@ func TestQueueWithSplitAndJoin(t *tes.T) {
 
 func TestQueueWithInvalidSplit(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with an invalid fan out.
-	var input = fra.QueueWithCapacity[int](3)
+	var input = com.QueueWithCapacity[int](3)
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "The size of the split must be greater than one.", e)
@@ -1586,16 +1586,16 @@ func TestQueueWithInvalidSplit(t *tes.T) {
 			ass.Fail(t, "Test should result in recovered panic.")
 		}
 	}()
-	fra.QueueClass[int]().Split(group, input, 1) // Should panic here.
+	com.QueueClass[int]().Split(group, input, 1) // Should panic here.
 }
 
 func TestQueueWithInvalidJoin(t *tes.T) {
 	// Create a wait group for synchronization.
-	var group fra.Synchronized = new(syn.WaitGroup)
+	var group com.Synchronized = new(syn.WaitGroup)
 	defer group.Wait()
 
 	// Create a new queue with an invalid fan out.
-	var inputs = fra.List[fra.QueueLike[int]]()
+	var inputs = com.List[com.QueueLike[int]]()
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "The number of input queues for a join must be at least one.", e)
@@ -1603,29 +1603,29 @@ func TestQueueWithInvalidJoin(t *tes.T) {
 			ass.Fail(t, "Test should result in recovered panic.")
 		}
 	}()
-	fra.QueueClass[int]().Join(group, inputs) // Should panic here.
+	com.QueueClass[int]().Join(group, inputs) // Should panic here.
 }
 
 func TestSetConstructors(t *tes.T) {
-	var collator = fra.Collator[int64]()
-	fra.Set[int64]()
-	fra.SetWithCollator(collator)
-	var sequence = fra.SetFromArray([]int64{1, 2, 3})
-	var set = fra.SetFromSequence(sequence)
+	var collator = com.Collator[int64]()
+	com.Set[int64]()
+	com.SetWithCollator(collator)
+	var sequence = com.SetFromArray([]int64{1, 2, 3})
+	var set = com.SetFromSequence(sequence)
 	ass.Equal(t, sequence.AsArray(), set.AsArray())
 }
 
 func TestSetsWithStrings(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[string]]()
-	fra.List[string]()
+	var collator = com.Collator[com.SetLike[string]]()
+	com.List[string]()
 	var empty = []string{}
-	var bazbar = fra.ListFromArray([]string{"baz", "bar"})
-	var bazfoo = fra.ListFromArray([]string{"baz", "foo"})
-	var baxbaz = fra.ListFromArray([]string{"bax", "baz"})
-	var baxbez = fra.ListFromArray([]string{"bax", "bez"})
-	var barbaz = fra.ListFromArray([]string{"bar", "baz"})
-	var bar = fra.ListFromArray([]string{"bar"})
-	var set = fra.Set[string]()                                   // [ ]
+	var bazbar = com.ListFromArray([]string{"baz", "bar"})
+	var bazfoo = com.ListFromArray([]string{"baz", "foo"})
+	var baxbaz = com.ListFromArray([]string{"bax", "baz"})
+	var baxbez = com.ListFromArray([]string{"bax", "bez"})
+	var barbaz = com.ListFromArray([]string{"bar", "baz"})
+	var bar = com.ListFromArray([]string{"bar"})
+	var set = com.Set[string]()                                   // [ ]
 	ass.True(t, set.IsEmpty())                                    // [ ]
 	ass.True(t, set.GetSize() == 0)                               // [ ]
 	ass.False(t, set.ContainsValue("bax"))                        // [ ]
@@ -1650,10 +1650,10 @@ func TestSetsWithStrings(t *tes.T) {
 	ass.Equal(t, "bar", set.GetValue(1))                          // ["bar", "baz", "foo"]
 	ass.Equal(t, bazfoo.AsArray(), set.GetValues(2, 3).AsArray()) // ["bar", "baz", "foo"]
 	ass.Equal(t, bar.AsArray(), set.GetValues(1, 1).AsArray())    // ["bar", "baz", "foo"]
-	var set2 = fra.SetFromSequence(set)                           // ["bar", "baz", "foo"]
+	var set2 = com.SetFromSequence(set)                           // ["bar", "baz", "foo"]
 	ass.True(t, collator.CompareValues(set, set2))                // ["bar", "baz", "foo"]
-	var array = fra.ListFromArray([]string{"foo", "bar", "baz"})  // ["bar", "baz", "foo"]
-	var set3 = fra.SetFromSequence(array)                         // ["bar", "baz", "foo"]
+	var array = com.ListFromArray([]string{"foo", "bar", "baz"})  // ["bar", "baz", "foo"]
+	var set3 = com.SetFromSequence(array)                         // ["bar", "baz", "foo"]
 	ass.True(t, collator.CompareValues(set2, set3))               // ["bar", "baz", "foo"]
 	iterator = set.GetIterator()                                  // ["bar", "baz", "foo"]
 	ass.True(t, iterator.HasNext())                               // ["bar", "baz", "foo"]
@@ -1677,8 +1677,8 @@ func TestSetsWithStrings(t *tes.T) {
 }
 
 func TestSetsWithIntegers(t *tes.T) {
-	var array = fra.ListFromArray([]int{3, 1, 4, 5, 9, 2})
-	var set = fra.Set[int]()           // [ ]
+	var array = com.ListFromArray([]int{3, 1, 4, 5, 9, 2})
+	var set = com.Set[int]()           // [ ]
 	set.AddValues(array)               // [1,2,3,4,5,9]
 	ass.False(t, set.IsEmpty())        // [1,2,3,4,5,9]
 	ass.True(t, set.GetSize() == 6)    // [1,2,3,4,5,9]
@@ -1692,8 +1692,8 @@ func TestSetsWithIntegers(t *tes.T) {
 }
 
 func TestSetsWithTildes(t *tes.T) {
-	var array = fra.ListFromArray([]Integer{3, 1, 4, 5, 9, 2})
-	var set = fra.Set[Integer]()       // [ ]
+	var array = com.ListFromArray([]Integer{3, 1, 4, 5, 9, 2})
+	var set = com.Set[Integer]()       // [ ]
 	set.AddValues(array)               // [1,2,3,4,5,9]
 	ass.False(t, set.IsEmpty())        // [1,2,3,4,5,9]
 	ass.True(t, set.GetSize() == 6)    // [1,2,3,4,5,9]
@@ -1707,13 +1707,13 @@ func TestSetsWithTildes(t *tes.T) {
 }
 
 func TestSetsWithSets(t *tes.T) {
-	var array1 = fra.ListFromArray([]int{3, 1, 4, 5, 9, 2})
-	var array2 = fra.ListFromArray([]int{7, 1, 4, 5, 9, 2})
-	var set1 = fra.Set[int]()
+	var array1 = com.ListFromArray([]int{3, 1, 4, 5, 9, 2})
+	var array2 = com.ListFromArray([]int{7, 1, 4, 5, 9, 2})
+	var set1 = com.Set[int]()
 	set1.AddValues(array1)
-	var set2 = fra.Set[int]()
+	var set2 = com.Set[int]()
 	set2.AddValues(array2)
-	var set = fra.Set[fra.SetLike[int]]()
+	var set = com.Set[com.SetLike[int]]()
 	set.AddValue(set1)
 	set.AddValue(set2)
 	ass.False(t, set.IsEmpty())
@@ -1727,75 +1727,75 @@ func TestSetsWithSets(t *tes.T) {
 }
 
 func TestSetsWithAnd(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[int]]()
-	var array1 = fra.ListFromArray([]int{3, 1, 2})
-	var array2 = fra.ListFromArray([]int{3, 2, 4})
-	var array3 = fra.ListFromArray([]int{3, 2})
-	var set1 = fra.Set[int]()
+	var collator = com.Collator[com.SetLike[int]]()
+	var array1 = com.ListFromArray([]int{3, 1, 2})
+	var array2 = com.ListFromArray([]int{3, 2, 4})
+	var array3 = com.ListFromArray([]int{3, 2})
+	var set1 = com.Set[int]()
 	set1.AddValues(array1)
-	var set2 = fra.Set[int]()
+	var set2 = com.Set[int]()
 	set2.AddValues(array2)
-	var set3 = fra.SetClass[int]().And(set1, set2)
-	var set4 = fra.Set[int]()
+	var set3 = com.SetClass[int]().And(set1, set2)
+	var set4 = com.Set[int]()
 	set4.AddValues(array3)
 	ass.True(t, collator.CompareValues(set3, set4))
 }
 
 func TestSetsWithSan(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[int]]()
-	var array1 = fra.ListFromArray([]int{3, 1, 2})
-	var array2 = fra.ListFromArray([]int{3, 2, 4})
-	var array3 = fra.ListFromArray([]int{1})
-	var set1 = fra.Set[int]()
+	var collator = com.Collator[com.SetLike[int]]()
+	var array1 = com.ListFromArray([]int{3, 1, 2})
+	var array2 = com.ListFromArray([]int{3, 2, 4})
+	var array3 = com.ListFromArray([]int{1})
+	var set1 = com.Set[int]()
 	set1.AddValues(array1)
-	var set2 = fra.Set[int]()
+	var set2 = com.Set[int]()
 	set2.AddValues(array2)
-	var set3 = fra.SetClass[int]().San(set1, set2)
-	var set4 = fra.Set[int]()
+	var set3 = com.SetClass[int]().San(set1, set2)
+	var set4 = com.Set[int]()
 	set4.AddValues(array3)
 	ass.True(t, collator.CompareValues(set3, set4))
 }
 
 func TestSetsWithIor(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[int]]()
-	var array1 = fra.ListFromArray([]int{3, 1, 5})
-	var array2 = fra.ListFromArray([]int{6, 2, 4})
-	var array3 = fra.ListFromArray([]int{1, 3, 5, 6, 2, 4})
-	var set1 = fra.Set[int]()
+	var collator = com.Collator[com.SetLike[int]]()
+	var array1 = com.ListFromArray([]int{3, 1, 5})
+	var array2 = com.ListFromArray([]int{6, 2, 4})
+	var array3 = com.ListFromArray([]int{1, 3, 5, 6, 2, 4})
+	var set1 = com.Set[int]()
 	set1.AddValues(array1)
-	var set2 = fra.Set[int]()
+	var set2 = com.Set[int]()
 	set2.AddValues(array2)
-	var set3 = fra.SetClass[int]().Ior(set1, set2)
+	var set3 = com.SetClass[int]().Ior(set1, set2)
 	ass.True(t, set3.ContainsAll(set1))
 	ass.True(t, set3.ContainsAll(set2))
-	var set4 = fra.Set[int]()
+	var set4 = com.Set[int]()
 	set4.AddValues(array3)
 	ass.True(t, collator.CompareValues(set3, set4))
 }
 
 func TestSetsWithXor(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[int]]()
-	var array1 = fra.ListFromArray([]int{2, 3, 1, 5})
-	var array2 = fra.ListFromArray([]int{6, 2, 5, 4})
-	var array3 = fra.ListFromArray([]int{1, 3, 4, 6})
-	var set1 = fra.Set[int]()
+	var collator = com.Collator[com.SetLike[int]]()
+	var array1 = com.ListFromArray([]int{2, 3, 1, 5})
+	var array2 = com.ListFromArray([]int{6, 2, 5, 4})
+	var array3 = com.ListFromArray([]int{1, 3, 4, 6})
+	var set1 = com.Set[int]()
 	set1.AddValues(array1)
-	var set2 = fra.Set[int]()
+	var set2 = com.Set[int]()
 	set2.AddValues(array2)
-	var set3 = fra.SetClass[int]().Xor(set1, set2)
-	var set4 = fra.Set[int]()
+	var set3 = com.SetClass[int]().Xor(set1, set2)
+	var set4 = com.Set[int]()
 	set4.AddValues(array3)
 	ass.True(t, collator.CompareValues(set3, set4))
 }
 
 func TestSetsWithEmptySets(t *tes.T) {
-	var collator = fra.Collator[fra.SetLike[int]]()
-	var set1 = fra.Set[int]()
-	var set2 = fra.Set[int]()
-	var set3 = fra.SetClass[int]().And(set1, set2)
-	var set4 = fra.SetClass[int]().San(set1, set2)
-	var set5 = fra.SetClass[int]().Ior(set1, set2)
-	var set6 = fra.SetClass[int]().Xor(set1, set2)
+	var collator = com.Collator[com.SetLike[int]]()
+	var set1 = com.Set[int]()
+	var set2 = com.Set[int]()
+	var set3 = com.SetClass[int]().And(set1, set2)
+	var set4 = com.SetClass[int]().San(set1, set2)
+	var set5 = com.SetClass[int]().Ior(set1, set2)
+	var set6 = com.SetClass[int]().Xor(set1, set2)
 	ass.True(t, collator.CompareValues(set3, set4))
 	ass.True(t, collator.CompareValues(set4, set5))
 	ass.True(t, collator.CompareValues(set5, set6))
@@ -1803,15 +1803,15 @@ func TestSetsWithEmptySets(t *tes.T) {
 }
 
 func TestStackConstructors(t *tes.T) {
-	fra.Stack[int64]()
-	fra.StackWithCapacity[int64](5)
-	var sequence = fra.StackFromArray([]int64{1, 2, 3})
-	var stack = fra.StackFromSequence(sequence)
+	com.Stack[int64]()
+	com.StackWithCapacity[int64](5)
+	var sequence = com.StackFromArray([]int64{1, 2, 3})
+	var stack = com.StackFromSequence(sequence)
 	ass.Equal(t, sequence.AsArray(), stack.AsArray())
 }
 
 func TestStackWithSmallCapacity(t *tes.T) {
-	var stack = fra.StackWithCapacity[int](1)
+	var stack = com.StackWithCapacity[int](1)
 	stack.AddValue(1)
 	defer func() {
 		if e := recover(); e != nil {
@@ -1824,7 +1824,7 @@ func TestStackWithSmallCapacity(t *tes.T) {
 }
 
 func TestEmptyStackRemoval(t *tes.T) {
-	var stack = fra.Stack[int]()
+	var stack = com.Stack[int]()
 	defer func() {
 		if e := recover(); e != nil {
 			ass.Equal(t, "Attempted to remove a value from an empty stack!", e)
@@ -1836,7 +1836,7 @@ func TestEmptyStackRemoval(t *tes.T) {
 }
 
 func TestStacksWithStrings(t *tes.T) {
-	var stack = fra.Stack[string]()
+	var stack = com.Stack[string]()
 	ass.True(t, stack.IsEmpty())
 	ass.True(t, stack.GetSize() == 0)
 	stack.RemoveAll()
@@ -1853,38 +1853,38 @@ func TestStacksWithStrings(t *tes.T) {
 }
 
 func TestIntervalConstructors(t *tes.T) {
-	var glyphs = fra.Interval[Glyph](
-		fra.Inclusive,
+	var glyphs = com.Interval[Glyph](
+		com.Inclusive,
 		Glyph(65),
 		Glyph(70),
-		fra.Inclusive,
+		com.Inclusive,
 	)
 	ass.Equal(t, 6, int(glyphs.GetSize()))
 	ass.Equal(t, "['A'..'F']", fmt.Sprintf("%v", glyphs))
 
-	glyphs = fra.Interval[Glyph](
-		fra.Exclusive,
+	glyphs = com.Interval[Glyph](
+		com.Exclusive,
 		Glyph(123),
 		Glyph(456),
-		fra.Inclusive,
+		com.Inclusive,
 	)
 	ass.Equal(t, 333, int(glyphs.GetSize()))
 	ass.Equal(t, "('{'..'ǈ']", fmt.Sprintf("%v", glyphs))
 
-	glyphs = fra.Interval[Glyph](
-		fra.Inclusive,
+	glyphs = com.Interval[Glyph](
+		com.Inclusive,
 		Glyph(1302),
 		Glyph(1303),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(t, 1, int(glyphs.GetSize()))
 	ass.Equal(t, "['Ԗ'..'ԗ')", fmt.Sprintf("%v", glyphs))
 
-	glyphs = fra.Interval[Glyph](
-		fra.Exclusive,
+	glyphs = com.Interval[Glyph](
+		com.Exclusive,
 		Glyph(0),
 		Glyph(30),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(t, 29, int(glyphs.GetSize()))
 	ass.Equal(
@@ -1895,11 +1895,11 @@ func TestIntervalConstructors(t *tes.T) {
 }
 
 func TestSpectrumConstructors(t *tes.T) {
-	var words = fra.Spectrum[Word](
-		fra.Inclusive,
+	var words = com.Spectrum[Word](
+		com.Inclusive,
 		Word("/nebula/classes/abstract"),
 		Word("/nebula/types"),
-		fra.Inclusive,
+		com.Inclusive,
 	)
 	ass.Equal(
 		t,
@@ -1907,11 +1907,11 @@ func TestSpectrumConstructors(t *tes.T) {
 		fmt.Sprintf("%v", words),
 	)
 
-	words = fra.Spectrum[Word](
-		fra.Inclusive,
+	words = com.Spectrum[Word](
+		com.Inclusive,
 		Word(`"A"`),
 		Word(`"Fe"`),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(
 		t,
@@ -1919,11 +1919,11 @@ func TestSpectrumConstructors(t *tes.T) {
 		fmt.Sprintf("%v", words),
 	)
 
-	words = fra.Spectrum[Word](
-		fra.Exclusive,
+	words = com.Spectrum[Word](
+		com.Exclusive,
 		Word("v1.2.3"),
 		Word("v2"),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(
 		t,
@@ -1933,35 +1933,35 @@ func TestSpectrumConstructors(t *tes.T) {
 }
 
 func TestContinuumConstructors(t *tes.T) {
-	var numbers = fra.Continuum[Number](
-		fra.Exclusive,
+	var numbers = com.Continuum[Number](
+		com.Exclusive,
 		Number(-1.23),
 		Number(4.56),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(t, "(-1.23..4.56)", fmt.Sprintf("%v", numbers))
 
-	numbers = fra.Continuum[Number](
-		fra.Exclusive,
+	numbers = com.Continuum[Number](
+		com.Exclusive,
 		Number(mat.NaN()),
 		Number(0),
-		fra.Inclusive,
+		com.Inclusive,
 	)
 	ass.Equal(t, "(..0]", fmt.Sprintf("%v", numbers))
 
-	numbers = fra.Continuum[Number](
-		fra.Inclusive,
+	numbers = com.Continuum[Number](
+		com.Inclusive,
 		Number(1),
 		Number(mat.NaN()),
-		fra.Exclusive,
+		com.Exclusive,
 	)
 	ass.Equal(t, "[1..)", fmt.Sprintf("%v", numbers))
 
-	numbers = fra.Continuum[Number](
-		fra.Inclusive,
+	numbers = com.Continuum[Number](
+		com.Inclusive,
 		Number(0),
 		Number(1),
-		fra.Inclusive,
+		com.Inclusive,
 	)
 	ass.Equal(t, "[0..1]", fmt.Sprintf("%v", numbers))
 }

@@ -14,7 +14,7 @@ package agents
 
 import (
 	fmt "fmt"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 	cmp "math/cmplx"
 	ref "reflect"
 	sts "strings"

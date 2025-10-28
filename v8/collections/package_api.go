@@ -35,7 +35,7 @@ package collections
 
 import (
 	age "github.com/craterdog/go-essential-composites/v8/agents"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 )
 
 // TYPE DECLARATIONS

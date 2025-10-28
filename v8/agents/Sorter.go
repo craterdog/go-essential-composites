@@ -15,7 +15,7 @@ package agents
 import (
 	ran "crypto/rand"
 	fmt "fmt"
-	uti "github.com/craterdog/go-missing-utilities/v8"
+	uti "github.com/craterdog/go-essential-utilities/v8"
 	big "math/big"
 	syn "sync"
 )
