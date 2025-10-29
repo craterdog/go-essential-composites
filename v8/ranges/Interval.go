@@ -207,7 +207,7 @@ func (v *interval_[V]) AsArray() []V {
 	return array
 }
 
-func (v *interval_[V]) GetIterator() uti.IteratorLike[V] {
+func (v *interval_[V]) GetIterator() uti.Ratcheted[V] {
 	var iterator = &iterator_[V]{
 		interval_: v,
 	}

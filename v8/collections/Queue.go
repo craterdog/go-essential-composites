@@ -291,7 +291,7 @@ func (v *queue_[V]) AsArray() []V {
 	return array
 }
 
-func (v *queue_[V]) GetIterator() uti.IteratorLike[V] {
+func (v *queue_[V]) GetIterator() uti.Ratcheted[V] {
 	v.mutex_.Lock()
 	var iterator = v.values_.GetIterator()
 	v.mutex_.Unlock()

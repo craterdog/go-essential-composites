@@ -146,7 +146,7 @@ func (v *stack_[V]) AsArray() []V {
 	return array
 }
 
-func (v *stack_[V]) GetIterator() uti.IteratorLike[V] {
+func (v *stack_[V]) GetIterator() uti.Ratcheted[V] {
 	var iterator = v.values_.GetIterator()
 	return iterator
 }

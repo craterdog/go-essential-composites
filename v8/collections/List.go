@@ -290,7 +290,7 @@ func (v *list_[V]) AsArray() []V {
 	return array
 }
 
-func (v *list_[V]) GetIterator() uti.IteratorLike[V] {
+func (v *list_[V]) GetIterator() uti.Ratcheted[V] {
 	var array = uti.CopyArray(v.array_)
 	var iterator = uti.Iterator(array)
 	return iterator
