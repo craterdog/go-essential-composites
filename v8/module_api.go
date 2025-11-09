@@ -88,8 +88,6 @@ type (
 	Accessible[V any]                = col.Accessible[V]
 	Associative[K comparable, V any] = col.Associative[K, V]
 	Elastic[V any]                   = col.Elastic[V]
-	Fifo[V any]                      = col.Fifo[V]
-	Lifo[V any]                      = col.Lifo[V]
 	Malleable[V any]                 = col.Malleable[V]
 	Searchable[V any]                = col.Searchable[V]
 	Sequential[V any]                = col.Sequential[V]

@@ -222,14 +222,6 @@ func (v *queue_[V]) GetClass() QueueClassLike[V] {
 	return queueClass[V]()
 }
 
-// Attribute Methods
-
-func (v *queue_[V]) GetCapacity() uint {
-	return v.capacity_
-}
-
-// Fifo[V] Methods
-
 func (v *queue_[V]) AddValue(
 	value V,
 ) {
@@ -266,6 +258,12 @@ func (v *queue_[V]) CloseChannel() {
 	close(v.available_)
 	// No more values can be placed on the queue.
 	v.mutex_.Unlock()
+}
+
+// Attribute Methods
+
+func (v *queue_[V]) GetCapacity() uint {
+	return v.capacity_
 }
 
 // Sequential[V] Methods

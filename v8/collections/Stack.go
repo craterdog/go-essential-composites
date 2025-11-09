@@ -93,14 +93,6 @@ func (v *stack_[V]) GetClass() StackClassLike[V] {
 	return stackClass[V]()
 }
 
-// Attribute Methods
-
-func (v *stack_[V]) GetCapacity() uint {
-	return v.capacity_
-}
-
-// Lifo[V] Methods
-
 func (v *stack_[V]) AddValue(
 	value V,
 ) {
@@ -128,6 +120,12 @@ func (v *stack_[V]) RemoveLast() V {
 
 func (v *stack_[V]) RemoveAll() {
 	v.values_.RemoveAll()
+}
+
+// Attribute Methods
+
+func (v *stack_[V]) GetCapacity() uint {
+	return v.capacity_
 }
 
 // Sequential[V] Methods

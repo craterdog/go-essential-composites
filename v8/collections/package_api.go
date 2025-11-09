@@ -342,12 +342,20 @@ instance of a concrete queue-like class.
 type QueueLike[V any] interface {
 	// Principal Methods
 	GetClass() QueueClassLike[V]
+	AddValue(
+		value V,
+	)
+	RemoveFirst() (
+		first V,
+		ok bool,
+	)
+	RemoveAll()
+	CloseChannel()
 
 	// Attribute Methods
 	GetCapacity() uint
 
 	// Aspect Interfaces
-	Fifo[V]
 	Sequential[V]
 }
 
@@ -378,12 +386,17 @@ instance of a concrete stack-like class.
 type StackLike[V any] interface {
 	// Principal Methods
 	GetClass() StackClassLike[V]
+	AddValue(
+		value V,
+	)
+	GetLast() V
+	RemoveLast() V
+	RemoveAll()
 
 	// Attribute Methods
 	GetCapacity() uint
 
 	// Aspect Interfaces
-	Lifo[V]
 	Sequential[V]
 }
 
@@ -469,36 +482,6 @@ type Elastic[V any] interface {
 	RemoveValues(
 		values Sequential[V],
 	)
-	RemoveAll()
-}
-
-/*
-Fifo[V any] is an aspect interface that declares a set of method signatures
-that must be supported by each instance of a synchronized first-in-first-out
-channel concrete class.
-*/
-type Fifo[V any] interface {
-	AddValue(
-		value V,
-	)
-	RemoveFirst() (
-		first V,
-		ok bool,
-	)
-	RemoveAll()
-	CloseChannel()
-}
-
-/*
-Lifo[V any] is an aspect interface that declares a set of method signatures
-that must be supported by each instance of a last-in-first-out class.
-*/
-type Lifo[V any] interface {
-	AddValue(
-		value V,
-	)
-	GetLast() V
-	RemoveLast() V
 	RemoveAll()
 }
 
