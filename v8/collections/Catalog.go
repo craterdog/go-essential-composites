@@ -126,31 +126,7 @@ func (v *catalog_[K, V]) GetClass() CatalogClassLike[K, V] {
 
 // Attribute Methods
 
-// Associative[K, V] Methods
-
-func (v *catalog_[K, V]) AsMap() map[K]V {
-	var map_ = map[K]V{}
-	var iterator = v.associations_.GetIterator()
-	for iterator.HasNext() {
-		var association = iterator.GetNext()
-		var key = association.GetKey()
-		var value = association.GetValue()
-		map_[key] = value
-	}
-	return map_
-}
-
-func (v *catalog_[K, V]) GetValue(
-	key K,
-) V {
-	var value V // Set the return value to its zero value.
-	var association, exists = v.keys_[key]
-	if exists {
-		// Extract the value.
-		value = association.GetValue()
-	}
-	return value
-}
+// Amendable[K, V] Methods
 
 func (v *catalog_[K, V]) SetValue(
 	key K,
@@ -167,30 +143,6 @@ func (v *catalog_[K, V]) SetValue(
 		v.associations_.AppendValue(association)
 		v.keys_[key] = association
 	}
-}
-
-func (v *catalog_[K, V]) GetKeys() Sequential[K] {
-	var listClass = ListClass[K]()
-	var keys = listClass.List()
-	var iterator = v.associations_.GetIterator()
-	for iterator.HasNext() {
-		var association = iterator.GetNext()
-		keys.AppendValue(association.GetKey())
-	}
-	return keys
-}
-
-func (v *catalog_[K, V]) GetValues(
-	keys Sequential[K],
-) Sequential[V] {
-	var listClass = ListClass[V]()
-	var values = listClass.List()
-	var iterator = keys.GetIterator()
-	for iterator.HasNext() {
-		var key = iterator.GetNext()
-		values.AppendValue(v.GetValue(key))
-	}
-	return values
 }
 
 func (v *catalog_[K, V]) RemoveValue(
@@ -223,6 +175,56 @@ func (v *catalog_[K, V]) RemoveValues(
 func (v *catalog_[K, V]) RemoveAll() {
 	v.keys_ = map[K]AssociationLike[K, V]{}
 	v.associations_.RemoveAll()
+}
+
+// Associative[K, V] Methods
+
+func (v *catalog_[K, V]) AsMap() map[K]V {
+	var map_ = map[K]V{}
+	var iterator = v.associations_.GetIterator()
+	for iterator.HasNext() {
+		var association = iterator.GetNext()
+		var key = association.GetKey()
+		var value = association.GetValue()
+		map_[key] = value
+	}
+	return map_
+}
+
+func (v *catalog_[K, V]) GetValue(
+	key K,
+) V {
+	var value V // Set the return value to its zero value.
+	var association, exists = v.keys_[key]
+	if exists {
+		// Extract the value.
+		value = association.GetValue()
+	}
+	return value
+}
+
+func (v *catalog_[K, V]) GetKeys() Sequential[K] {
+	var listClass = ListClass[K]()
+	var keys = listClass.List()
+	var iterator = v.associations_.GetIterator()
+	for iterator.HasNext() {
+		var association = iterator.GetNext()
+		keys.AppendValue(association.GetKey())
+	}
+	return keys
+}
+
+func (v *catalog_[K, V]) GetValues(
+	keys Sequential[K],
+) Sequential[V] {
+	var listClass = ListClass[V]()
+	var values = listClass.List()
+	var iterator = keys.GetIterator()
+	for iterator.HasNext() {
+		var key = iterator.GetNext()
+		values.AppendValue(v.GetValue(key))
+	}
+	return values
 }
 
 // Sequential[AssociationLike[K, V]] Methods

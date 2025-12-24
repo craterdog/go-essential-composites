@@ -311,6 +311,7 @@ type CatalogLike[K comparable, V any] interface {
 	GetClass() CatalogClassLike[K, V]
 
 	// Aspect Interfaces
+	Amendable[K, V]
 	Associative[K, V]
 	Sequential[AssociationLike[K, V]]
 	Sortable[AssociationLike[K, V]]
@@ -436,6 +437,28 @@ type Accessible[V any] interface {
 }
 
 /*
+Amendable[K comparable, V any] is an aspect interface that declares a set of
+method signatures that must be supported by each instance of an amendable
+concrete class.
+
+An amendable class allows the modification of a sequence of generic typed
+key-value associations.
+*/
+type Amendable[K comparable, V any] interface {
+	SetValue(
+		key K,
+		value V,
+	)
+	RemoveValue(
+		key K,
+	) V
+	RemoveValues(
+		keys Sequential[K],
+	) Sequential[V]
+	RemoveAll()
+}
+
+/*
 Associative[K comparable, V any] is an aspect interface that declares a set of
 method signatures that must be supported by each instance of an associative
 concrete class.
@@ -448,21 +471,10 @@ type Associative[K comparable, V any] interface {
 	GetValue(
 		key K,
 	) V
-	SetValue(
-		key K,
-		value V,
-	)
 	GetKeys() Sequential[K]
 	GetValues(
 		keys Sequential[K],
 	) Sequential[V]
-	RemoveValue(
-		key K,
-	) V
-	RemoveValues(
-		keys Sequential[K],
-	) Sequential[V]
-	RemoveAll()
 }
 
 /*

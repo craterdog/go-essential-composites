@@ -86,6 +86,7 @@ type (
 
 type (
 	Accessible[V any]                = col.Accessible[V]
+	Amendable[K comparable, V any]   = col.Amendable[K, V]
 	Associative[K comparable, V any] = col.Associative[K, V]
 	Elastic[V any]                   = col.Elastic[V]
 	Malleable[V any]                 = col.Malleable[V]
